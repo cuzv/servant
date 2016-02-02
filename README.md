@@ -1,2 +1,2 @@
 # servant
-Java api server
+Api server, written in Java.
