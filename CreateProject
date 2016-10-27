@@ -1,19 +1,17 @@
-File -> New -> Project
-Maven -> Next(do not use archetype)
+[File] -> [New] -> [Project]
+[Maven] -> Next(do not use archetype)
 fill gruopid, artifactld
 fill projectname -> finish
 
-project/src/main, new dir [webapp/WEB-INF]
+under `$project/src/main`, new dir `webapp/WEB-INF`
 
 project structure(cmd+;)
-Modules -> new [web]
-change [web module deployment descriptor] path to [project/src/main/webapp/WEB-INF/web.xml]
-change [web resource directory] to [project/src/main/webapp/]
+[Modules] -> new [web]
+[Web Module Deployment Descriptor] to `$project/src/main/webapp/WEB-INF/web.xml`
+[Web Resource Directory] to `$project/src/main/webapp/`
+[Source Roots] check `$project/src/main/java`
 
-source root checked [project/src/main/java]
+[Artifacts] -> New [Web Application: Exploded] -> [From modules] -> [OK]
 
-Artifacts -> New [Web Application: Exploded] -> From modules -> ok
-
-
-Run -> Edit Configurations -> new Tomcat Server -> local -> ...
-
+[Run] -> [Edit Configurations] -> Add New Configurations -> [Tomcat Server] -> [local] -> finish setups, or
+[Run] -> [Edit Configurations] -> [Defaults] -> [Tomcat Server] -> [local] -> finish setups
