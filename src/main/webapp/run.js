@@ -21,6 +21,8 @@
  * THE SOFTWARE.
  */
 
+// 'use strict';
+
 //alert('Hello, world');
 
 var arr = ["1", 22, "333"];
@@ -313,6 +315,132 @@ console.log(ming)
 var json = '{"name": "Lucy", "age": 22,"height": 170,"weight": 45}'
 var obj = JSON.parse(json)
 console.log(obj)
+
+
+var person = {
+    name: "Moch",
+    age: 24,
+    gender: "male",
+    city: "Chengdu"
+}
+console.log(person)
+
+var Student = {
+    name: "someone",
+    height: 175,
+    run: function() {
+        console.log(this.name + ' is running...')
+    }
+}
+
+var xiaohong = {name: "XiaoHong"}
+xiaohong.__proto__ = Student
+
+console.log(xiaohong.name)
+xiaohong.run()
+
+function createStudent(name) {
+    let stu = Object.create(Student)
+    stu.name = name
+    return stu
+}
+
+let xiaohua = createStudent('XiaoHua')
+xiaohua.run()
+
+console.log(xiaohua.prototype)
+
+
+// 构造函数
+function Worker(name) {
+    this.name = name
+    this.hello = function() {
+        console.log('hello, ' + this.name)
+    }
+}
+
+// let noone = new Worker('on one')
+// noone.hello()
+
+Worker.prototype.sayHello = function() {
+    console.log(`Hello, ${this.name}!!!`)
+}
+
+console.log(Worker.prototype)
+let noone = new Worker('on one')
+noone.sayHello()
+
+
+// 构造函数
+function PrimaryWorker(props) {
+    Worker.call(this, props)
+    this.grade = props.grade || 1
+}
+
+// new PrimaryWorker() ----> PrimaryWorker.prototype ----> Object.prototype ----> null
+// new PrimaryWorker() ----> PrimaryWorker.prototype ----> Worker.prototype ----> Object.prototype ----> null
+
+// 空函数
+function F() {
+}
+
+// 把 F 的原型指向一个新的 Worker 对象，F 对象的原型正好指向 Worder.prototype
+F.prototype = Worker.prototype
+// 把 PrimaryWorker 的原型指向一个新的F对象，F对象的原型正好指向 Worder.prototype:
+PrimaryWorker.prototype = new F()
+// 把 PrimaryWorker 原型的构造函数修复为 PrimaryWorker:
+PrimaryWorker.prototype.constructor = PrimaryWorker
+// 继续在 PrimaryWorker 原型（就是new F()对象）上定义方法：
+PrimaryWorker.prototype.getGrade = function () {
+    return this.grade
+}
+
+// function inherits(Child, Parent) {
+//     var FF = function () {};
+//     FF.prototype = Parent.prototype;
+//     Child.prototype = new FF();
+//     Child.prototype.constructor = Child;
+// }
+
+// inherits()
+
+
+// ES6
+class Man {
+    constructor(name) {
+        this.name = name
+    }
+
+    hello() {
+        console.log(`hello, ${this.name}!`)
+    }
+}
+
+let man = new Man('xiaomingming')
+man.hello()
+
+class Superman extends Man {
+    constructor(name, grade) {
+        super(name)
+        this.grade = grade
+    }
+
+    printGrade() {
+        console.log(`I am at grade ${this.grade}`)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
