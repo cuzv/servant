@@ -6,13 +6,49 @@
 
 <struts>
     <constant name="struts.devMode" value="true" />
-    <package name="servant" extends="struts-default">
+    <package name="servant" namespace="/" extends="struts-default">
+
+        <interceptors>
+            <interceptor-stack name="servantStack">
+                <interceptor-ref name="paramsPrepareParamsStack">
+                    <param name="prepare.alwaysInvokePrepare">false</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="servantStack"></default-interceptor-ref>
+
+        <!--不限制action的method-->
+        <!--<global-allowed-methods>regex:.*</global-allowed-methods>-->
+
         <action name="hello"
                 class="com.mochxiao.tutorial.struts2.HelloWorldAction"
                 method="execute">
-            <result name="success">/hello-world.jsp</result>
-            <result name="error">/error.jsp</result>
+            <result name="success">/WEB-INF/jsp/hello-world.jsp</result>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
         </action>
+
+        <action name="employee-*"
+                class="com.mochxiao.tutorial.struct2crud.EmployeeAction"
+                method="{1}">
+            <result name="{1}">/WEB-INF/jsp/employee/employee-{1}.jsp</result>
+            <result name="success" type="redirectAction">employee-list</result>
+            <allowed-methods>edit,list,update,save</allowed-methods>
+        </action>
+
+        <!--&lt;!&ndash;不知道为毛非要写下面的规则才能映射&ndash;&gt;-->
+        <!--struts你妈炸了，因为被allowed-method给默认限制了-->
+        <!--<action name="employee-edit"-->
+                <!--class="com.mochxiao.tutorial.struct2crud.EmployeeAction"-->
+                <!--method="edit">-->
+            <!--<result name="edit">/WEB-INF/jsp/employee/employee-edit.jsp</result>-->
+        <!--</action>-->
+
+        <!--<action name="employee-update"-->
+                <!--class="com.mochxiao.tutorial.struct2crud.EmployeeAction"-->
+                <!--method="update">-->
+            <!--<result name="success" type="redirectAction">employee-list</result>-->
+        <!--</action>-->
 
     </package>
 </struts>

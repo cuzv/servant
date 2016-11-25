@@ -23,5 +23,9 @@
         <input type="submit" value="Say Hello"/>
     </form>
 
+    <br />
+
+    <a href="employee-list">List all employees</a>
+
 </body>
 </html>

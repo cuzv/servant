@@ -15,3 +15,10 @@ project structure(cmd+;)
 
 [Run] -> [Edit Configurations] -> Add New Configurations -> [Tomcat Server] -> [local] -> finish setups, or
 [Run] -> [Edit Configurations] -> [Defaults] -> [Tomcat Server] -> [local] -> finish setups
+
+
+Fix "java.lang.ClassNotFoundException: org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter" problem
+https://xulog.com/2014/11/09/to-create-the-first-maven-engineering-intellij-idea.html
+
+File-Project Structure-Artifacts
+readd all available elements libs to left `/WEB-INF/lib`
